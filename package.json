@@ -14,19 +14,17 @@
     "csv"
   ],
   "author": "NatalieAlexis",
-  "contributors": ["NatalieAlexis"],
+  "contributors": [
+    "NatalieAlexis"
+  ],
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/alu0100816761/ajax-ecma6-modules-files-nataliealexis"
   },
   "homepage": "https://github.com/alu0100816761/ajax-ecma6-modules-files-nataliealexis",
   "dependencies": {
-	"jquery": "*",
-    "underscore": "*",
-	"express": "~3.2.6",
-    "ejs": "*",
-    "body-parser": "~1.12.0",
-    "express-ejs-layouts": "~1.1.0"
+    "ejs": "^2.4.1",
+    "express": "^4.13.4"
   },
   "devDependencies": {
     "gulp": "^3.9.1",
@@ -35,9 +33,8 @@
     "gulp-htmlmin": "^1.3.0",
     "gulp-karma": "0.0.5",
     "gulp-minify": "0.0.5",
+    "gulp-shell": "^0.5.2",
     "gulp-uglify": "^1.5.3",
-    "mocha": "*",
-    "sinon": "^1.17.3",
     "karma": "~0.12",
     "karma-chai": "^0.1.0",
     "karma-chrome-launcher": "^0.2.3",
@@ -48,14 +45,13 @@
     "karma-safari-launcher": "~0.1",
     "karma-sinon": "^1.0.4",
     "minimax": "*",
+    "mocha": "*",
     "optimist": "*",
-    "phantomjs-prebuilt": "^2.1.7"
+    "phantomjs-prebuilt": "^2.1.7",
+    "sinon": "^1.17.3",
+    "supervisor": "^0.10.0"
   },
   "engines": {
     "node": "0.10.x"
-  },
-  "dependencies": {
-    "ejs": "^2.4.1",
-    "express": "^4.13.4"
   }
 }
