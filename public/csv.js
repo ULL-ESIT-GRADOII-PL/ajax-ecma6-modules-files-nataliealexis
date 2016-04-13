@@ -28,7 +28,7 @@ const dump = (fileName) => {
   /*XXXXXXXXXXXXXXX XXXXXXXX XXXXXX X
       XXXXXXXXXXXXXXXXXXXXXXXXX
   XXX*/
-  $.ajax(success: function (data) {
+  $.get(filename, function (data) {
       $("#original").val(data);
   });
 };
@@ -45,9 +45,14 @@ const handleFileSelect = (evt) => {
     XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
   XX
   XXXXXXXXXXXXXXXXXXXXXXXXXXX*/
-  var files = evt.target.files; // FileList object
-  var template = _.template(usageList.innerHTML);
-  document.getElementById('result').innerHTML = template({ files : files});
+  var files = evt.target.files;
+
+  var reader = new FileReader();
+  reader.onload = (e) => {
+
+    $("#original").val(e.target.result);
+  };
+  reader.readAsText(files[0])
   /*var file = evt.target.files[0];
     if (file) {
       var reader = new FileReader();
@@ -74,8 +79,13 @@ const handleDragFileSelect = (evt) => {
   XX
   XXXXXXXXXXXXXXXXXXXXXXXXXXX*/
   var files = evt.dataTransfer.files;
-  var template = _.template(usageList.innerHTML);
-  document.getElementById('result').innerHTML = template({ files : files});
+  var reader = new FileReader();
+    reader.onload = (e) => {
+
+      $("#original").val(e.target.result);
+      evt.target.style.background = "white";
+    };
+    reader.readAsText(files[0])
 }
 
 const handleDragOver = (evt) => {
@@ -99,10 +109,21 @@ $(document).ready(() => {
           XXXXXX
         XX
    XXX*/
+   $("#parse").click( () => {
+        if (window.localStorage) localStorage.original = original.value;
+        $.get("/csv", /* Request AJAX para que se calcule la tabla */
+          { input: original.value },
+          fillTable,
+          'json'
+        );
+   });
    /* botones para rellenar el textarea */
    /*XXXXXXXXXXXXXXXXXXXXXXXXX XXXXX XX X
      XXXXXXXXXXX XX XX X XXXXXXXXXXXXXXXXXXXXXXXXXXX XXX
    XXX*/
+   $('button.example').each( (_,y) => {
+     $(y).click( () => { dump(`${$(y).text()}.txt`); });
+   });
 
     // Setup the drag and drop listeners.
     //var dropZone = document.getElementsByClassName('drop_zone')[0];
