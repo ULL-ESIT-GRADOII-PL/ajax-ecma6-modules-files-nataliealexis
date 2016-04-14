@@ -6,8 +6,8 @@
 
 ## Páginas personales  
 
-[Natalie Dajakaj](alu0100818369.github.io)  
-[Alexis Daniel Fuentes Pérez](alu0100816761.github.io)  
+[Natalie Dajakaj](https://alu0100818369.github.io)  
+[Alexis Daniel Fuentes Pérez](https://alu0100816761.github.io)  
 
 ## Descripción de la práctica  
 
