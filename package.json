@@ -24,7 +24,8 @@
   "homepage": "https://github.com/alu0100816761/ajax-ecma6-modules-files-nataliealexis",
   "dependencies": {
     "ejs": "^2.4.1",
-    "express": "^4.13.4"
+    "express": "^4.13.4",
+    "express-ejs-layouts": "^2.1.0"
   },
   "devDependencies": {
     "express-ejs-layouts": "^2.1.0",
