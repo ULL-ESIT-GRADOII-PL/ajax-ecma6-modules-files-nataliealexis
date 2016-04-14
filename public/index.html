@@ -7,7 +7,7 @@
      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min.js"></script>
      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
      <script type="text/javascript" src="csv.js"></script>
-     <script type="text/javascript" src="main.js"></script>
+     <script type="text/javascript" src="app.js"></script>
      <!--<script type="text/javascript" src="underscore.js"></script>-->
      <script type="text/html" id='fillTable'>
        <table id="result" class="center">
@@ -32,6 +32,24 @@
         <th>CSV string:</th> <!-- autofocus attribute is HTML5 -->
         <td><textarea autofocus cols = "80" rows = "5" id="original"></textarea></td>
       </tr>
+    </table>
+    <table>
+      <tr>
+        <th>
+         <div class="example">
+              Cargar ejemplos:
+              <button class ="example" type="button">input</button>
+              <button class ="example" type="button">input2</button>
+              <button class ="example" type="button">input3</button>
+          </div>
+        </th>
+      </tr>
+      <tr>
+          <th>
+              Cargar archivo:
+              <input type="file" class="inputfile" />
+          </th>
+        </tr>
     </table>
     <button type="button">table:</button><br>
     <span class="output" id="finaltable"></span>

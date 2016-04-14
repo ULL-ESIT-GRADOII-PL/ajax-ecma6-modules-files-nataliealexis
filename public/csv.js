@@ -28,7 +28,7 @@ const dump = (fileName) => {
   /*XXXXXXXXXXXXXXX XXXXXXXX XXXXXX X
       XXXXXXXXXXXXXXXXXXXXXXXXX
   XXX*/
-  $.get(filename, function (data) {
+  $.get(fileName, function (data) {
       $("#original").val(data);
   });
 };
