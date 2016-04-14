@@ -1,5 +1,17 @@
 var expect = chai.expect;
 
+var prueba = {
+  csv : function () {
+    $.ajax({
+      url: 'http://localhost:5000/csv',
+      dataType: 'json',
+      success: function(data) {
+        return(data);
+      }
+    });
+  }
+}
+
 describe("CSV", function () {
   var sandbox;
 
@@ -14,18 +26,18 @@ describe("CSV", function () {
   });
 
   describe("funcion calculate", function() {
-    $(document).ready(() => {
+    //$(document).ready(() => {
       it("deberia aceptar una cadena", function() {
         var cadena = '"hola"';
-        var r;
-        $.get("/csv", /* Request AJAX para que se calcule la tabla */
-          { input: cadena },
-          r,
-          'json'
-        );
+        var r = prueba.csv();
+        //console.log (prueba.csv());
+        /*$.get('/csv', (request, response) => {
+          //XXXXXXXXXXXXXXX XXXXXXX XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX XXX
+          response.send ({"rows": calculate(request.query.input)});
+        });*/
         expect(r[0].value[0]).to.equal('hola');
       });
-    })();
+    //})();
     it("prueba con una coma a la derecha", function() {
       var cadena = '"hola,"';
       var r = calculate(cadena);
