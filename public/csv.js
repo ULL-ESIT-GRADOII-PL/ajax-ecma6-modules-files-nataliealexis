@@ -18,30 +18,50 @@ const resultTemplate = `
 `;
 
 /* Volcar la tabla con el resultado en el HTML */
-const fillTable = (data) => { 
-  $("#finaltable").html(_.template(resultTemplate, { rows: data.rows })); 
+const fillTable = (data) => {
+  $("#finaltable").html(_.template(resultTemplate, { rows: data.rows }));
 };
 
-/* Volcar en la textarea de entrada 
+/* Volcar en la textarea de entrada
  * #original el contenido del fichero fileName */
 const dump = (fileName) => {
-  XXXXXXXXXXXXXXX XXXXXXXX XXXXXX X
+  /*XXXXXXXXXXXXXXX XXXXXXXX XXXXXX X
       XXXXXXXXXXXXXXXXXXXXXXXXX
-  XXX
+  XXX*/
+  $.get(fileName, function (data) {
+      $("#original").val(data);
+  });
 };
- 
+
 const handleFileSelect = (evt) => {
   evt.stopPropagation();
   evt.preventDefault();
 
- XXX XXXXX X XXXXXXXXXXXXXXXXX 
+ /*XXX XXXXX X XXXXXXXXXXXXXXXXX
 
   XXX XXXXXX X XXX XXXXXXXXXXXXX
   XXXXXXXXXXXXX X XXX XX X
-  
+
     XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
   XX
-  XXXXXXXXXXXXXXXXXXXXXXXXXXX
+  XXXXXXXXXXXXXXXXXXXXXXXXXXX*/
+  var files = evt.target.files;
+
+  var reader = new FileReader();
+  reader.onload = (e) => {
+
+    $("#original").val(e.target.result);
+  };
+  reader.readAsText(files[0])
+  /*var file = evt.target.files[0];
+    if (file) {
+      var reader = new FileReader();
+      reader.onload = function(e) {
+        myText.innerHTML = e.target.result;
+      }
+      var c = reader.readAsText(file);
+    }
+    else { alert("Failed to load file"); }*/
 }
 
 /* Drag and drop: el fichero arrastrado se vuelca en la textarea de entrada */
@@ -49,15 +69,23 @@ const handleDragFileSelect = (evt) => {
   evt.stopPropagation();
   evt.preventDefault();
 
-  XXX XXXXX X XXXXXXXXXXXXXXXXXXXXXXX XX XXXXXXXX XXXXXXX
+  /*XXX XXXXX X XXXXXXXXXXXXXXXXXXXXXXX XX XXXXXXXX XXXXXXX
 
   XXX XXXXXX X XXX XXXXXXXXXXXXX
   XXXXXXXXXXXXX X XXX XX X
-  
+
     XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
     XXXXXXXXXXXXXXXXXXXXXXXXXXX X XXXXXXXX
   XX
-  XXXXXXXXXXXXXXXXXXXXXXXXXXX
+  XXXXXXXXXXXXXXXXXXXXXXXXXXX*/
+  var files = evt.dataTransfer.files;
+  var reader = new FileReader();
+    reader.onload = (e) => {
+
+      $("#original").val(e.target.result);
+      evt.target.style.background = "white";
+    };
+    reader.readAsText(files[0])
 }
 
 const handleDragOver = (evt) => {
@@ -67,24 +95,35 @@ const handleDragOver = (evt) => {
 }
 
 $(document).ready(() => {
-    let original = document.getElementById("original");  
+    let original = document.getElementById("original");
     if (window.localStorage && localStorage.original) {
       original.value = localStorage.original;
     }
 
     /* Request AJAX para que se calcule la tabla */
-    XXXXXXXXXXXXXXXXXX XX XX X
+    /*XXXXXXXXXXXXXXXXXX XX XX X
         XX XXXXXXXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXXXXXXX X XXXXXXXXXXXXXXX
-        XXXXXXXXXXXXX 
-          X XXXXXX XXXXXXXXXXXXXX XX 
+        XXXXXXXXXXXXX
+          X XXXXXX XXXXXXXXXXXXXX XX
           XXXXXXXXXX
           XXXXXX
         XX
-   XXX
+   XXX*/
+   $("#botoncalcular").click( () => {
+        if (window.localStorage) localStorage.original = original.value;
+        $.get("/csv", /* Request AJAX para que se calcule la tabla */
+          { input: original.value },
+          fillTable,
+          'json'
+        );
+   });
    /* botones para rellenar el textarea */
-   XXXXXXXXXXXXXXXXXXXXXXXXX XXXXX XX X
+   /*XXXXXXXXXXXXXXXXXXXXXXXXX XXXXX XX X
      XXXXXXXXXXX XX XX X XXXXXXXXXXXXXXXXXXXXXXXXXXX XXX
-   XXX
+   XXX*/
+   $('button.filabotones').each( (_,y) => {
+     $(y).click( () => { dump(`${$(y).text()}.txt`); });
+   });
 
     // Setup the drag and drop listeners.
     //var dropZone = document.getElementsByClassName('drop_zone')[0];
