@@ -2,7 +2,7 @@ var expect = chai.expect;
 
 var prueba = {
   csv : function () {
-    $.ajax({
+    $.get({
       url: 'http://localhost:5000/csv',
       dataType: 'json',
       success: function(data) {

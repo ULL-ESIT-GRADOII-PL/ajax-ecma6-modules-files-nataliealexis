@@ -16,13 +16,17 @@ app.use(express.static(__dirname + '/public'));
 const calculate = require('./models/calculate.js');
 
 app.get('/', (request, response) => {
-  //XXXXXXXXXXXXXXXXXXXXXXXX X XXXXXX XXXX XXXXXXXXX XXX
-  response.render('index', { title: 'CSV' });
+    response.render('index', { title: 'CSV' });
 });
 
 app.get('/csv', (request, response) => {
   //XXXXXXXXXXXXXXX XXXXXXX XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX XXX
   response.send ({"rows": calculate(request.query.input)});
+});
+
+app.get('/test', (request, response) => {
+  //XXXXXXXXXXXXXXXXXXXXXXXX X XXXXXX XXXX XXXXXXXXX XXX
+  response.render('test', { title: 'Tests' });
 });
 
 app.listen(app.get('port'), () => {
