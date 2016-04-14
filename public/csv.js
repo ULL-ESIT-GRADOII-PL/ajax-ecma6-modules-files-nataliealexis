@@ -121,7 +121,7 @@ $(document).ready(() => {
    /*XXXXXXXXXXXXXXXXXXXXXXXXX XXXXX XX X
      XXXXXXXXXXX XX XX X XXXXXXXXXXXXXXXXXXXXXXXXXXX XXX
    XXX*/
-   $('button.example').each( (_,y) => {
+   $('button.filabotones').each( (_,y) => {
      $(y).click( () => { dump(`${$(y).text()}.txt`); });
    });
 
