@@ -1,16 +1,6 @@
-var expect = chai.expect;
+var original = "";
 
-var prueba = {
-  csv : function () {
-    $.get({
-      url: 'http://localhost:5000/csv',
-      dataType: 'json',
-      success: function(data) {
-        return(data);
-      }
-    });
-  }
-}
+chai.should();
 
 describe("CSV", function () {
   var sandbox;
@@ -27,7 +17,18 @@ describe("CSV", function () {
 
   describe("funcion calculate", function() {
     //$(document).ready(() => {
-      it("deberia aceptar una cadena", function() {
+
+    it('Should accept a simple input', function () {
+          original = "1,4,7,a";
+          var aux = calculate(original)[0].value;
+          aux.should.have.length(4);
+          aux[0].should.equal('1');
+          aux[1].should.equal('4');
+          aux[2].should.equal('7');
+          aux[3].should.equal('a');
+        });
+
+      /*it("deberia aceptar una cadena", function() {
         var cadena = '"hola"';
         var r = prueba.csv();
         //console.log (prueba.csv());
@@ -35,10 +36,10 @@ describe("CSV", function () {
           //XXXXXXXXXXXXXXX XXXXXXX XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX XXX
           response.send ({"rows": calculate(request.query.input)});
         });*/
-        expect(r[0].value[0]).to.equal('hola');
+      /*  expect(r[0].value[0]).to.equal('hola');
       });
     //})();
-    it("prueba con una coma a la derecha", function() {
+    /*it("prueba con una coma a la derecha", function() {
       var cadena = '"hola,"';
       var r = calculate(cadena);
       expect(r[0].value[0]).to.equal('hola,');
@@ -71,6 +72,6 @@ describe("CSV", function () {
       expect(r[0].value[0]).to.equal('hola');
       expect(r[0].value[1]).to.equal('');
       expect(r[0].value[2]).to.equal('adios');
-    });
+    });*/
   });
 });
