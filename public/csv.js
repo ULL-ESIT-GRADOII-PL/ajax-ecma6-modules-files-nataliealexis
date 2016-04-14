@@ -109,7 +109,7 @@ $(document).ready(() => {
           XXXXXX
         XX
    XXX*/
-   $("#parse").click( () => {
+   $("#botoncalcular").click( () => {
         if (window.localStorage) localStorage.original = original.value;
         $.get("/csv", /* Request AJAX para que se calcule la tabla */
           { input: original.value },
