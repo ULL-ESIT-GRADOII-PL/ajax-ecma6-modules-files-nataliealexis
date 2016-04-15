@@ -25,9 +25,6 @@ const fillTable = (data) => {
 /* Volcar en la textarea de entrada
  * #original el contenido del fichero fileName */
 const dump = (fileName) => {
-  /*XXXXXXXXXXXXXXX XXXXXXXX XXXXXX X
-      XXXXXXXXXXXXXXXXXXXXXXXXX
-  XXX*/
   $.get(fileName, function (data) {
       $("#original").val(data);
   });
@@ -37,14 +34,6 @@ const handleFileSelect = (evt) => {
   evt.stopPropagation();
   evt.preventDefault();
 
- /*XXX XXXXX X XXXXXXXXXXXXXXXXX
-
-  XXX XXXXXX X XXX XXXXXXXXXXXXX
-  XXXXXXXXXXXXX X XXX XX X
-
-    XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-  XX
-  XXXXXXXXXXXXXXXXXXXXXXXXXXX*/
   var files = evt.target.files;
 
   var reader = new FileReader();
@@ -69,15 +58,6 @@ const handleDragFileSelect = (evt) => {
   evt.stopPropagation();
   evt.preventDefault();
 
-  /*XXX XXXXX X XXXXXXXXXXXXXXXXXXXXXXX XX XXXXXXXX XXXXXXX
-
-  XXX XXXXXX X XXX XXXXXXXXXXXXX
-  XXXXXXXXXXXXX X XXX XX X
-
-    XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-    XXXXXXXXXXXXXXXXXXXXXXXXXXX X XXXXXXXX
-  XX
-  XXXXXXXXXXXXXXXXXXXXXXXXXXX*/
   var files = evt.dataTransfer.files;
   var reader = new FileReader();
     reader.onload = (e) => {
@@ -100,15 +80,6 @@ $(document).ready(() => {
       original.value = localStorage.original;
     }
 
-    /* Request AJAX para que se calcule la tabla */
-    /*XXXXXXXXXXXXXXXXXX XX XX X
-        XX XXXXXXXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXXXXXXX X XXXXXXXXXXXXXXX
-        XXXXXXXXXXXXX
-          X XXXXXX XXXXXXXXXXXXXX XX
-          XXXXXXXXXX
-          XXXXXX
-        XX
-   XXX*/
    $("#botoncalcular").click( () => {
         if (window.localStorage) localStorage.original = original.value;
         $.get("/csv", /* Request AJAX para que se calcule la tabla */
@@ -117,10 +88,8 @@ $(document).ready(() => {
           'json'
         );
    });
+   
    /* botones para rellenar el textarea */
-   /*XXXXXXXXXXXXXXXXXXXXXXXXX XXXXX XX X
-     XXXXXXXXXXX XX XX X XXXXXXXXXXXXXXXXXXXXXXXXXXX XXX
-   XXX*/
    $('button.filabotones').each( (_,y) => {
      $(y).click( () => { dump(`${$(y).text()}.txt`); });
    });
