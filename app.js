@@ -20,12 +20,10 @@ app.get('/', (request, response) => {
 });
 
 app.get('/csv', (request, response) => {
-  //XXXXXXXXXXXXXXX XXXXXXX XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX XXX
   response.send ({"rows": calculate(request.query.input)});
 });
 
 app.get('/test', (request, response) => {
-  //XXXXXXXXXXXXXXXXXXXXXXXX X XXXXXX XXXX XXXXXXXXX XXX
   response.render('test', { title: 'Tests' });
 });
 
